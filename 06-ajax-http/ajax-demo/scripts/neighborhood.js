@@ -12,8 +12,11 @@ Neighborhood.prototype.toHtml = function() {
 };
 
 function handleShowNeighborhoods() {
+  // $.getJSON('url').then( success callback, fail callback)
   $.getJSON('/data/neighborhoodData.json')
-  .then(function(data) {
+  .then(
+    // success call back
+    function(data) {
     console.log(data);
     data.forEach(function(neighborhoodObject) {
       neighborhoods.push(new Neighborhood(neighborhoodObject));
@@ -22,6 +25,7 @@ function handleShowNeighborhoods() {
     neighborhoods.forEach(function(ourNewNeighborhoodObject){
       $('#neighborhoods').append(ourNewNeighborhoodObject.toHtml());
     });
+    // fail call back
   }, function(err) {
     console.error(err);
   });
